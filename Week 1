@@ -1,0 +1,61 @@
+AI Agents: 
+-Autonomy= once given a goal they can figure out the next step without waiting for user to prompt them 
+-Tool use= agents can log into plat forms, pull data, write spreadsheets,edit documents 
+-Loops= can run continously, checking for updates every hour or every day 
+
+Prompts are how user communicates with the agent 
+
+Goal: learn how structure strong visual prompts, discover why concrete examples matter more than vauge directions, and understand how this foundational skill will power agents being built. 
+  - weak prompts will produce weak, unuseable insights. 
+  - strong prompts will gernerate oucomes that are polished, and on brand (every strong prmopt= subject + style + deatils) 
+
+Best way to write a prompt: 
+- start simple ex: "a rug in a room"- gives the basleine to work froom 
+- add context ex: "a rug in a modern living room"- now allows the rug to be somewhere specific 
+- add style ex: "a bohemian hute rug in a moder living room" - style transforms generic into intentional and memorable 
+- add details ex: "... with naturla light, wooden floors, and a neutral sofa"- allows the specifc element introduced to make the image feel vivid and real. These seemingly small touches dramatically change the overall "feel" of the image
+- add technical specifications ex: "...hero shot, natural light at 45 degrees, soft shadows, no people, high resolution" - this gives camera angle, resolution, specific negs to avoid 
+- ilerate in delibereate steps = add one layer, generate image, observe then make changes with the next layer 
+- compare outputs= which version is more realistic, polished/ which matches vibe better 
+
+System Call is Critical 
+-System message= "job description" for AI Agent (gives agent identity, boundaries and purpose) 
+  - without it, the agent will behave like a general-purpose chatbot: vauge, inconsistent and sometimes irrelevant 
+  - with it, the agent locks into a specific role with a clear task 
+    - this ensures the output is reliable, structured, and relevant 
+
+Ensure consistency: 
+- Prompt: the creative description of want to see 
+- Size: image resolution- higher resolution is a sharper, more detailed image 
+- Number of Variants: how many different interpretations you need/ receive, generate multiple options to explore different visual directions, especially valuable when refining vision 
+- Seed: number that controls randomness (OPTIONAL) 
+- Negative prompt: elements you want to exclude from prompt (helps steer away from unwanted elements) 
+  - prompts become visuals through API calls, parameters are precision control, allows work to go from experimental to professional, brand-ready images 
+
+To make agent 
+- always starts with a trigger (click) 
+- add a clean prompt node-> removes line breaks, bolds, bullets, puts double qoutes to single qoutes, and returns a neat JSON with one key: prompt 
+- AI used is google gemini 
+
+Recap:
+1. If project had a highlight reel what would it be on: It would start with me getting stuck while trying to access the Gemini API key, followed by the moment of celebrating once I finally figured it out. From there, it would show me experimenting and naviagting n8n, playing around with different nodes and gradually understanding how everything connects. As I explored more, I became genuinely interested and excited about what the pplatform can do. The reel would then end with completing the basic AI agent workflow. Even though it was a small task, it felt like a big accomplishment because it represented real learning, problem- solving, and growth throughout the project. 
+
+2. Which skill do you feel you leveled up the most during the project? This weeks project has allowed me to experiment and work through unexpected errors as they came up. In the begining my approach was truly trial and error, which helped me learn and become comfortable understanding what each node does and how it fits into the overall workflow. Over time, I gained a clearer sense of how the system works and how to troubleshoot more intenionally. I was alos glad that I had the oppurtunity to do a voiceover explaining my workflow. It pushed me to communicate waht I learned and how everything works, which was valueable practice and something I know will be useful for my future work. 
+
+3. What was the hardest part and how did you push through it? The hardest part was getting started, especially dealing with issues accessing the Gemini API key. It was fustrating at first, but I pushed through by using trial and error, and experimenting until things worked. Once I got past that hurdle, I felt more confident navigating n8n and solving problems as they came up.
+
+
+Workflow explained: 
+What it does- takes a home decor idea and makes a moldboard catered for specific desires 
+User- user puts in the most basic idea wanted in mood board- once sent into chat flow it goes Ito chat model, which in this case we are using google gemini 2.5 (show) within AI agent we provided a role and a task for our basic prompt. Overall we told it to take our really basic idea and turn it into a very detailed high quality picture for our moldboard
+  - once have prompt then there will be formatting issues so to fix it we have provided javascript code to fix any formatting including removing an markdowns, bullets, line breaks and replacing   double quotes with single quotes so it will be easily read 
+
+once prompt clean then we make the HTTP request to the final model which is Hugging Face AI image generator- will develop image we are looking for 
+
+round jute rug, Scandinavian living room, neutral palette, warm wood, soft daylight exmaple prompt 
+styled interior as the prompt (gave some detail) 
+- work flow runs 
+	out put at each node 
+	gemini receives chat we can see input is chat we sent as well as the sys message we provided so it knows what it needs to be doing with our prompt- output has all details we asked about and what e did not ask our selves- JSON output 
+	next is for it to be cleaned (no bold or mark downs so its ready to be sent over) 
+	HTTP request returned gives a high quality image based on the basic prompt. 
