@@ -26,3 +26,5 @@ Workflow:
 - if statement: if yes, go to scrapper to find trend, if no then send message 
 
 The detecting intent it will filter out any meaningless prompts, ensuring only prompts looking for data trends/ analysis get fulfilled. 
+
+Image of Market Trend Discovery Workflow 
