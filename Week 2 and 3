@@ -1,0 +1,28 @@
+This weeek I will build my first Consumer Trend Discovery AI Agent 
+  - it listens to user queries, interprets, and decides to scrape data or respond dircelty. 
+  - directly supports decision making in areas of: pricing, product imagrey, customer reviews 
+    - helps Wayfair stay ahead of shifting design and shopping trneds 
+
+Goal: 
+- Teach agent to understand queries: build an intent identifier that knows when to answer a question or start trend discovery 
+- Collect data from real sources: scrape trending products from Amazon, Walmart, and capture live trend signals from blogs and search. 
+- Merge insights into a trend report: combine everything your agent finds into one clean, auto generated trend summary 
+
+I pulled the official n8nio/n8n image from Docker Hub using Docker Desktop, which downloaded the image locally and made it available under the images tab. 
+
+Now agent will comprehend and look for: 
+  keywords: words such as trending, popular, teop-selling, new collection 
+  conext signals: links to amazon or walmart product pages 
+  request tone: exploratory language ("show me", "find out") vs. factual ("what is") - learns to classify what type of request its handling 
+
+Using JSON it keeps everything structured and precise (no rambling, or guessing- just clear communication) 
+  with intent detection: it gives AI agent the ability to think before it works (automated -> intelligent) 
+
+Workflow: 
+-Trigger= chat message, input has been entered 
+- Ai agent= find intent of user, so for a data analysis is true just something random output is false 
+  Parse to be JSON format- classifier returns its JSON wrapped markdown- the code removes these markdowns. It then tries to turn the cleaned text into a real data object that workflow can read. If parsing fails, will return {"trend": "no", answer: "Parsing error"} to avoid crashig downstream logic. When it runs smoothly will return {"trend": "yes"} 
+  So the User Intent Identifier returns yes if the user asks about rug trends and returns no for a simple question and provides a respose wihout scraping. 
+- if statement: if yes, go to scrapper to find trend, if no then send message 
+
+The detecting intent it will filter out any meaningless prompts, ensuring only prompts looking for data trends/ analysis get fulfilled. 
