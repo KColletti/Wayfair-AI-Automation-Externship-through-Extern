@@ -28,3 +28,10 @@ Workflow:
 The detecting intent it will filter out any meaningless prompts, ensuring only prompts looking for data trends/ analysis get fulfilled. 
 
 Image of Market Trend Discovery Workflow 
+
+Give Agent a Voice when handling non-trend Queries 
+  Agent replies to the user with a question so it has a clear answer too be efficent 
+-If node- false= pases control to simple AI Agent 
+  There is a Basic LLM Chain Node that the flow goes to which takes the exact message the user typed int the chat input node and feed it into the language model (gemini) to send back a simple, relevant reply -> gemini chat model attatched reads the users messgae and generates a natural reply (getting this reply for a non trend query, proves it is not sent for scrapping) 
+
+Image of Giving AI Agent a Voice 
