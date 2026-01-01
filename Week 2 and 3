@@ -63,3 +63,10 @@ True node- is triggered when a trend-related question is detected
       -javascript code filters out old posts and keeps only recent updates from last 7 days 
 RSS Image 
 
+Adding Google Search for lve Web Trends 
+  -Will allow agent to have access to the live web, to fetch the latest updates, blog posts, or product trends as they happen 
+    - If node is true-> detects trend intent and activates the google search node, passes the original user query downstram for live search 
+      -Google search node: fetched up to date web content from google using a custom search api. It sends a search request with the users messgae as teh query and retrieves structured results (titles, links and snippets) 
+
+Google Search Workflow Image 
+
