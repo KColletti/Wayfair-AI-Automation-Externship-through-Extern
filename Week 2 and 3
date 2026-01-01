@@ -35,3 +35,31 @@ Give Agent a Voice when handling non-trend Queries
   There is a Basic LLM Chain Node that the flow goes to which takes the exact message the user typed int the chat input node and feed it into the language model (gemini) to send back a simple, relevant reply -> gemini chat model attatched reads the users messgae and generates a natural reply (getting this reply for a non trend query, proves it is not sent for scrapping) 
 
 Image of Giving AI Agent a Voice 
+
+Capturing Industry Signals through RSS Feeds
+-Chat sent is a correct query-> RSS feeds provides: clean, machine-readable updates from trusted sources (design blogs, reatiler sites, and brand press releases) 
+  RSS brings all content to you- RSS (Really simple syndication) 
+    resons to use- privacy, slow at typing, slow internet 
+  Need RSS reader to use- feedly, old reader, feedreader, feed demon, inoreader, rss owl, newsblur, diggreader (3 most popular feedly, old reader, inoreader)-> * AI agent doesnt visit the webist, but reads the structured entries and knowns what and when it is published and where to find it * now anytime website resleases new info user gets notified 
+    - allows each feed to be in real-time, allowing AI connect product data (amazon/ walmart) with contextual signals (from media) to detect emerging trends early 
+    - RSS remain open, structured and transparent (internet original piblic API) 
+-Finding relibale rug trends- these feeds will be running the engine (4 high-quality sources that regulary post about rug or interior design trends, feature buyer or retailer insights (new and selling), include a working RSS feed link) 
+  - Source: Humming Haus Blog 
+      RSS Feed: https://humminghaus.com/blogs/blog.atom
+      Website: https://humminghaus.com/en-us/blogs/blog
+ - Source: Obeetee Carpets Blog 
+      RSS Feed: https://www.obeetee.in/blogs/know-your-carpet.atom
+      Website: https://www.obeetee.in/blogs/know-your-carpet
+  - Source: Rugs Blog 
+      RSS Feed: https://rugs.com/blog/feed/
+      Website: https://rugs.com/blog/
+  - Source: Rug Society Blog 
+      RSS Feed: https://rugsociety.eu/blog/feed/
+      Website: https://rugsociety.eu/blog/
+
+True node- is triggered when a trend-related question is detected 
+  -4 RSS, use merge to connect all 4 to allow the incoming RSS feeds into one list, so agent has a single, unified feed to work with instead of jugglling mulitple separte sources 
+    - split= since every RSS feed has different formatting, this helps summarize them by extracting just the important parts- post title, URL, date and summary, so agent can read consistently 
+      -javascript code filters out old posts and keeps only recent updates from last 7 days 
+RSS Image 
+
