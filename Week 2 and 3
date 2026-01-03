@@ -128,3 +128,17 @@ most powerful capability and why
   - The most powerful capability is its ability to combine insights from multiple data sources to detect trends early, enabling data-driven decisions that anticipate customer demand rather than react to it.
 
 Trend Report and Image Workflow of Amazon Scarpper and Merge
+
+System Message = agents operating system/ brain of agent 
+  - single block of text that gives the agent its personality, priorities and sense of purpose- decides how to act. 
+  -Define the agents identity- tells the model who it is 
+  - Set boundaries- limits the scoope to rugs, the last 7 days, and specific data sources, which prevents the model from wandering off-topic or pulling random, outdated insights. 
+  - Instructs what data to extract- the attributes (size, color, material, style, price range) make the output consistent and analyzable- making it ready to go into the dashboard or buisness report. 
+  - Dictates the output- tells the model exactly how to write: se HTML, include a style guide, and structure the report like a real Wayfair insight deck (Title, Executive Summary, Trends, Appendix).
+  - Teaches Editorial Judgment- tells model how to think critically: combine multiple sources into one signal, flag low-confidence insights, ignore anything outside of rugs 
+By changing a few lines in the System Message, you decide what kind of value the agent creates for Wayfair:
+- A Research Analyst version might summarize fresh trends.
+- A Merchandiser version could turn trends into SKU recommendations.
+- A Creative Strategist version could propose campaign ideas or Instagram captions.
+    - That’s the real power: you’re shaping the agent’s brain to deliver business outcomes.
+  
