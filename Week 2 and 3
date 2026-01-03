@@ -70,3 +70,61 @@ Adding Google Search for lve Web Trends
 
 Google Search Workflow Image 
 
+Scraping 
+- lets agent see material trends, design patterns, and new price bands while putting it into a structured data set 
+  - gives insights on rise, average prices, keywords 
+    Overall: scraping teaches the agent to read the webs hidden structure and extract data automatically, it turns messy product pages into clean, structured insights you can actually analyze (how agent starts seeing not just searching) 
+-Scraping Amazon to detect amazon links (both product and collection types), fetch HTML data from Amazon pages, extract details like product name, price, features and patterns, handles both product pages and list pages seperately for clean, structured output 
+  -off of If true, code node of find URL= reads the chat text, finds all amazon links and sorts into 2 groups-> product pages and collection or search pages- then sends the 2 clean lists forward so the next nodes know what to fetch and scrape 
+      - expected output: array named amazon_products and amazon_collections
+    - Amazon scrapper code node= reads all Amazon links from input message, cleans them, and sorts into the 2 groups- product pages (individual listings) and collection pages (search results or bestseller lists) 
+      - expected output: Two arrays — amazon_products and amazon_collections — ready for separate processing.
+    - Amazon product code node= converts product links array ino individual worflow items, one per URL, so that each product can be scrapped seperatley 
+      - expected output: Individual items with { json: { url } } pointing to Amazon product (SKU) pages.
+    -Wait= amazon blocks traffic that sends requests too quickly, Adding short delays between product requests makes your workflow behave more like a real user, reducing timeouts and blocks
+    - Amazon Collection Code Node= sepertates product pages (contains the full product details (name, price, size)) and collection pages (lists multiple products) 
+        - seperating these let us fetch product pages directlt where possible, and extract product links from collection pages where necessary 
+      -expected output: Items with { json: { url } } pointing to Amazon category or search result pages.
+    - Get HTML Contect= Fetch Product Pages is a HTTP request, This node visits each product page and fetches its HTML code. The “User-Agent” header makes your scraper look like a regular web browser, helping prevent blocks.
+      - expected output: Raw HTML of each Amazon product page stored in data
+    - Get Amazon Product Detail Code Node= extract product details-> This node reads each product page and extracts key details: Product name (#productTitle), Price (within Amazon’s <span> price tags), Feature list (from “About this item”), Pattern or variant (like color or design), Essentially, this converts messy HTML into structured, readable product data
+      -  Structured JSON with clean product details and timestamps for each page scraped.
+    - Get HTML of website, Downloads the raw HTML for each collection/search page so we can extract product links from the page content. (done by using cookies)
+      -expected output: Raw HTML for Amazon collection pages.
+    - Extract HTML Content= Extract Amazon Product URL-> This step scans the collection page and picks out every product link it can find. Amazon’s product links usually include “/dp/”, so we’re telling the system, “find all the links that look like product pages and collect them in a list called product_links.”
+      -expected output: A JSON array of product links found on each collection page.
+    - Make Amazon accessible URL1 code node= normalize links to full Amazon URLs- cleaning up links ensuring hygeine 
+      -expected output: A clean list of complete, unique product URLs.
+    - Split URLs= splits it into individual items, takes the big list of product links and splits it into separate pieces so each product can be opened and read one by one
+      -expected output: Multiple workflow items, each containing a single product URL.
+    -URL- wise HTML gather= fetch each product page HTML- safely fetches each product page, pretends to be a real browser, and ensures the system keeps moving even if a page is slow or unresponsive. It opens each product link one by one and downloads the full HTML code from the page. That HTML is what the scraper will read in the next step to pull details like name, price, and features.
+      -expected output: Raw HTML for each product page, stored in the data field.
+  - Amazon Scraper2= parse each product page into structured data- reads each product page and picks out important details like the product’s name, price, features, and pattern. It uses a tool called Cheerio, which helps your agent read and understand the structure of a webpage, kind of like how you’d use “Find” in a long document to quickly locate the right lines, Once all this is collected, the system saves everything neatly into a list (called results) with details for each product, including timestamps and any errors. If one product fails to load, it just moves to the next one, so the workflow never stops midway.
+      - expected output: A list of clean, structured product records from Amazon, complete with metadata such as scrape time and error counts.
+      
+
+Amazon workflow can now automatically fetch and extract product-level data: names, prices, and features from both direct product pages and large category collections. This makes your agent capable of reading live e-commerce data directly from the web, just like a real analytics engine
+
+Merge all workflows together 
+  - merge and code node= collects every item coming from the four sources and normalizes them into one list called allData. For product batches, it extracts key fields (name, price, pattern, details, scraped_at) and computes helper fields (numeric price, category, detail count). For RSS/news items, it pulls title, link, dates, and short metadata. Any unknown structures are still stored as other so nothing is lost.
+      - Purpose: This node is where every data stream — Amazon scrapers, Google Search, and RSS feeds — comes together. It’s the single junction where your Trend Discovery Agent unites everything it has learned so far. Action: The Merge node takes all input sources and appends them into one continuous flow of items, without overwriting or replacing anything. Each entry — whether it’s a product, article, or search snippet — is now part of one collective dataset.
+      - Purpose: This is your “data refinery.” It processes the mixed raw data coming from all sources and standardizes it into a clean, structured format that the AI can understand. Action: The script loops through every item, identifies whether it’s a product (from scrapers) or article (from RSS feeds), and tags it with consistent fields — like price, category, word count, or publish date. It also adds helper values such as price_numeric and category to make analysis easier later.
+  - Analyze data: analysis all data from various sources and identify trending rugs topic 
+      - Purpose: This is the intelligence engine of your workflow — the point where raw data turns into insights. The AI reads through all the merged inputs and produces a detailed HTML trend report.Action: It receives allData as input, applies the structured system message you added (the one with formatting, price buckets, and attribute normalization), and generates a professional HTML summary. If no rug-related signals are found, it clearly states that in the report.
+
+    -clean AI output: cleans up the messy HTML generated by the AI so it can be displayed or saved properly. It removes extra formatting symbols (like html or  that AI sometimes adds). It cleans up extra spaces, line breaks, and tabs to make the file smaller and neater. It fixes broken HTML tags — making sure the file starts with <!DOCTYPE html> and includes proper <html> and <body> wrappers.Finally, it returns one clean, ready-to-use HTML version that can be viewed directly or stored for later. = taking a rough AI draft and turning it into a properly formatted, professional web page.
+      -Purpose: Think of this as a “content cleaner.” It ensures the AI’s output HTML is formatted properly for display or download.Action: The script removes markdown fences, unwanted symbols, duplicate <html> or <body> tags, and excessive spacing. It also adds a proper <!DOCTYPE html> wrapper if needed, ensuring the final document renders without glitches.
+
+  -Download HTML File- takes the leaned HTML string and converts it into a binary file object (Base64) that n8n can treat as a downloadable file named file.html. This creates a file you can download immediately or pass to other nodes (Drive, S3, email).
+      -Purpose: Converts your cleaned HTML into a downloadable file.Action: The code takes the HTML string, encodes it in Base64 format, and prepares it as a binary file so n8n can generate a downloadable .html document automatically.
+
+  - HTML Output- gives generated HTML inside n8n so you can preview the report instantly without downloading files
+      -Purpose: Lets you preview the final trend report directly inside n8n.Action: This node renders the cleaned HTML within the workflow UI so you can immediately see what your Trend Discovery Agent produced — no external viewer required.
+
+You’ve built a full Trend Discovery Agent, now think like a Wayfair employee. Based on your agent’s insights, how would you use this data to forecast next year’s rug trends and guide real business decisions?
+  - I’d leverage the agent to spot emerging rug trends across product and content data and predict which styles and price ranges will grow next year. This would inform smarter inventory, pricing, and marketing decisions, helping Wayfair get ahead of demand while minimizing risk.
+
+most powerful capability and why
+  - The most powerful capability is its ability to combine insights from multiple data sources to detect trends early, enabling data-driven decisions that anticipate customer demand rather than react to it.
+
+Trend Report and Image Workflow of Amazon Scarpper 
