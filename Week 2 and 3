@@ -152,7 +152,11 @@ Output Structure → How the final report is built
 When Extracting Trends → What judgment it applies
 Deliverable → What you actually receive
 
-
 System Message Tweak File
   - Biggest takeaway from tinkering with the system message? The biggest takeaway is that carefully defining trend language makes the system much better at spotting real, actionable signals. Even small wording changes can turn vague outputs into clear insights about what’s actually popular.
 
+Highlight reel: The highlight reel would focus mostly on two things: first, learning how to scrape data effectively to pull relevant information, and second, experimenting with and tweaking system messages to get clearer, more actionable insights. It would show the moments where small changes in wording led to big improvements in the outputs.
+
+What skills have been leveled up and how you noticed growth: Scraping was completely new for me, so I leveled up in understanding how to extract data from websites and work with it effectively. I noticed growth because I went from not knowing where to start to confidently pulling the information I needed and troubleshooting issues along the way. It also boosted my problem-solving skills as I figured out how to handle real-world challenges.
+
+Hardest part and how did you push through: The hardest part was ensuring I fully understood each step of scrapping, but I took it slow and wrote notes to look back on! 
