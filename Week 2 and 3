@@ -142,5 +142,17 @@ By changing a few lines in the System Message, you decide what kind of value the
 - A Creative Strategist version could propose campaign ideas or Instagram captions.
     - That’s the real power: you’re shaping the agent’s brain to deliver business outcomes.
 
+
+Role → Who the agent is
+Scope → What data it pays attention to
+Data Extraction & Normalization → How it reads and organizes data
+Attributes to Extract and Normalize → What details it highlights
+Formatting & Editorial Rules → How it speaks and presents
+Output Structure → How the final report is built
+When Extracting Trends → What judgment it applies
+Deliverable → What you actually receive
+
+
 System Message Tweak File
+  - Biggest takeaway from tinkering with the system message? The biggest takeaway is that carefully defining trend language makes the system much better at spotting real, actionable signals. Even small wording changes can turn vague outputs into clear insights about what’s actually popular.
 
