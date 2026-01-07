@@ -7,3 +7,31 @@ competitive monitoring comes in: the process of tracking rival products, prices,
 Analyze one competing retailer in category of rugs: will closley look at their product listings, prices, styles, and messaging to spot patterns, gaps, and opportunities
 
 If your agent surfaced these five signals automatically next week, which one Wayfair decision would you recommend to act on immediately (merch, marketing, or product)? Explain in one sentence why.: Act on the handloom/woven accent rug trend immediately through merchandising, since adding or featuring these versatile small rugs aligns with current consumer demand and can drive quick sales.
+
+Will be scraping to analyze competitor: 
+In Project 2, your agent was an anthropologist, studying behavior across the market.
+In Project 3, it’s a detective, zooming in on specific suspects to find clues about strategy.
+
+Scraping = structured visibility- turns messy web pages into clean, comparable product data your agent can analyze.
+
+- Fetch Wayfair Rugs Page (HTTP Request): 
+    Purpose: Download the Wayfair listing page so the workflow has the raw content it needs to find product information.
+    Action: This node sends a normal web request (a GET) to the Wayfair rugs listing URL. We include a browser-like User-Agent header so the response looks like it’s coming back to a regular shopper’s browser. The node captures whatever Wayfair returns — that could be HTML, or sometimes a JSON blob embedded in the page — and stores it for the next node to inspect.
+
+-Extract Rugs Products (Code)
+    Purpose: Find the product records inside the raw response and turn them into tidy, consistent fields that the rest of the workflow can use.
+    Action: This code node reads the data that the HTTP Request returned and safely parses it (it can handle raw text, JSON strings, or arrays). It looks specifically for Wayfair’s product list object (commonly browse.browse_grid_objects) and then pulls out the useful fields from each product card: product name, SKU, product URL, price info, image ID (used to build an image URL), ratings and review counts, material/features, size options, shipping flags, and so on. The result is a clean list of product objects where each item has the same set of labeled fields — essentially turning messy web content into a structured product table.
+
+- Filter Valid Products (Filter)
+    Purpose: Keep only the meaningful product records so downstream steps don’t waste time on empty or broken data.
+    Action: This node checks each item coming from the extractor and removes anything that looks invalid — for example, records without a product title. It’s a simple quality gate: if a product lacks the minimum required data (like a name), it’s dropped here so that later steps only work with useful entries.
+
+-Create Final JSON (Code)
+    Purpose: Package all the cleaned product rows into one tidy JSON payload with metadata so other parts of the system can consume the entire scrape as a single object.
+    Action: This code node collects the filtered product items and bundles them into one JSON document. It creates a small header called scrape_info (with the source name, category, timestamp, and total count) and places the product list under wayfair_products. Think of it as preparing a finished spreadsheet and adding a cover sheet that explains where it came from and when it was made.
+
+-Debug / Pass-through Logger (Code)
+    Purpose: Let you inspect and confirm the full JSON structure before sending it downstream or merging it with other data sources.
+    Action: This final code node prints the complete JSON to the workflow logs (so you can visually inspect it in n8n), and then passes the same object forward unchanged. It’s a safe checkpoint for debugging — if anything looks off, you can open the node’s execution output and see the raw, final result.
+
+Wayfair Scraper Flow Image
