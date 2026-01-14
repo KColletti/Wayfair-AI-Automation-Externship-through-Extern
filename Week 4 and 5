@@ -35,3 +35,11 @@ Scraping = structured visibility- turns messy web pages into clean, comparable p
     Action: This final code node prints the complete JSON to the workflow logs (so you can visually inspect it in n8n), and then passes the same object forward unchanged. It’s a safe checkpoint for debugging — if anything looks off, you can open the node’s execution output and see the raw, final result.
 
 Wayfair Scraper Flow Image
+
+Which node do you think adds the most value to your agent and why? 
+The scraping code node adds the most value because it handles data extraction, pagination, error handling, and site-specific challenges. The URL is just an input, while the logic determines data quality and reliability. 
+
+If you were part of Wayfair’s team, how could this data help drive more informed product or pricing decisions as early as next week?
+This data would help identify immediate pricing gaps and competitive pressure by comparing Wayfair products to Amazon in real time, enabling quick price adjustments or targeted promotions on high-demand items.
+
+Wayfair and Amazon Scrapper (Current Flow Image) 
