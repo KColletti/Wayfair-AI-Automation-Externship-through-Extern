@@ -43,3 +43,37 @@ If you were part of Wayfair’s team, how could this data help drive more inform
 This data would help identify immediate pricing gaps and competitive pressure by comparing Wayfair products to Amazon in real time, enabling quick price adjustments or targeted promotions on high-demand items.
 
 Wayfair and Amazon Scrapper (Current Flow Image) 
+
+Build the Analyst Chain 
+  - Merge1 = merges the amazon scrappers into one stream
+    - Purpose: Collects all Amazon-derived items into a single stream.
+    -Action: Takes the outputs from the Amazon scraper and appends them together so downstream nodes see a unified list.
+    -Why this matters: Amazon data can come from multiple scrapers or discovery paths. Merge1 ensures duplicates and different formats are funneled into one place for consistent processing
+
+  - Merge2= merges Merge1 and Wayfair scrapper: cleaner,easier to debug and scalable if need to add more competitors later on.
+    -Purpose: Combine Amazon data with Wayfair data into one consolidated feed.
+    -Action: Appends the output of Merge1 (all Amazon items) with the Wayfair scraper output, producing a single combined stream of competitor + Wayfair records.
+    -Why this matters: The AI agent needs both competitor and Wayfair records side-by-side to make comparisons. Merge creates that single dataset so the agent can analyze relationships, gaps, and overlaps.
+
+  - Analyze All Data= AI Agent Node: takes everything the scrapers bring in and synthessizes while using Google Gemini as the chat model 
+    -Purpose: Act as the analyst that ingests the combined data and produces a structured intelligence output.
+    -Action: The agent interprets the data, extracts trends and comparisons, and outputs a single HTML report string.
+    -Why this matters: This node is the decision-making core: it applies the business rules, normalization, and reporting templates you defined to turn raw items into insights.
+  Google Gemini 
+    -Purpose: Generate natural, well-structured text (the written report) from the agent’s instructions and the combined data.
+    -Action: The AI Agent node is connected to the Gemini model. Gemini converts the agent’s parsed instructions into the final HTML-formatted content (tables, bullets, summary text) according to the style guide.
+    -Why this matters: The agent provides the logic and structure; Gemini supplies the fluent narrative and formatting. Together they produce a readable, shareable report.
+
+  -Clean AI Output= code node that cleans up input: takes messy fraft HTML from the AI and removes junk, fixes tags, and ensures the final document is readable and renderable. 
+    -Purpose: Sanitize, normalize, and ensure the AI’s HTML is safe and renderable.
+    -Action: Runs JavaScript to remove markdown fences, tidy escaped newlines/tabs, convert basic markdown to HTML where needed, remove duplicate <html>/<body> wrappers, and ensure the output is wrapped with <!DOCTYPE html> if missing.
+    -Why this matters: AI-generated HTML can be messy. This node acts like an editor that fixes formatting issues so the output displays correctly and can be saved without manual cleanup.
+
+  - Download HTML File = code node: packages HTML reports like a .zip file, converting it into downloadable brinary data that can be previewed or shared
+    -Purpose: Turns your cleaned HTML into a downloadable file.
+    -Action: The code takes your HTML, converts it into a special “file-ready” format (base64), and names it file.html so it can be downloaded or shared.
+    -Why this matters: This step makes your AI-generated report usable: you can now save it, share it with teammates, or plug it into a dashboard later.
+  - See HTML Output here= allows you to see the template 
+    -Purpose: Preview the cleaned HTML report directly inside n8n.
+    -Action: Renders {{ $json.cleaned_minified_html }} in the node UI so you can quickly inspect the final report without downloading.
+    -Why this matters: Fast visual verification: you can see layout, headings, tables, and copy immediately and iterate on the system message or scrapers if something looks off.
