@@ -105,3 +105,10 @@ What is one tactical action should Wayfair take next based on agents output? Way
 
 What is the most powerful capability and why? 
 The most powerful capability node-wise is the web scraping nodes for both competitor sites, because they provide the raw, structured data needed to make any analysis or AI output accurate. Without clean, reliable input data, the code/AI nodes can’t produce trustworthy results, no matter how advanced the downstream processing is.
+
+Project highlight reel: The highlight reel would show the full pipeline turning messy competitor web data into clean, structured insights and actionable recommendations, like a senior analyst. It would emphasize how the agent automates competitive monitoring and enables Wayfair to make faster pricing, content, and review strategy decisions.
+
+Skills leveled up: I leveled up by building a full automated pipeline that scrapes competitor sites, cleans the data, and turns it into strategic insights using AI.
+
+Hardest and how did you push through: The hardest part was scraping the competitor sites reliably, and I pushed through by repeatedly trying, researching what I was doing wrong, and adjusting my approach until it worked.
+ 
