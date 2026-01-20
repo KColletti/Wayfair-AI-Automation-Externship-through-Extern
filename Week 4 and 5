@@ -77,3 +77,31 @@ Build the Analyst Chain
     -Purpose: Preview the cleaned HTML report directly inside n8n.
     -Action: Renders {{ $json.cleaned_minified_html }} in the node UI so you can quickly inspect the final report without downloading.
     -Why this matters: Fast visual verification: you can see layout, headings, tables, and copy immediately and iterate on the system message or scrapers if something looks off.
+
+Signal= repeatable patterns with clear impact
+  - Actionable trend → potential market shift
+  - Market direction worth exploring
+Noise= random or unsupported fluctuations
+  - Random event or error — ignore
+  - Anecdotal, not statistically meaningful
+
+To Check competitor Price: 
+- Check consistency
+- Compare across competitors
+- Cross-check reviews
+- Contextualize promotions
+    - Always verify price signals with at least two data points or supporting sources.
+
+When reading your AI output, ask yourself:
+Does this pattern repeat across multiple data sources?
+Would this insight make a business stakeholder act (e.g., change pricing, update assortment, or adjust imagery)?
+Can I trace the data source that supports this claim?
+Is this recent and consistent (within the past 7 days)?
+If the agent disappeared tomorrow, could a human verify this insight manually?
+ 
+If you can answer “yes” to most, you’ve found a real signal.
+
+What is one tactical action should Wayfair take next based on agents output? Wayfair should run a 2-week short-burst promotional pilot on rugs (3–4 flash deals per week) to capitalize on the gap in competitors’ promotional frequency. This test will quickly identify the most effective timing and discount depth to drive conversion and share gains.
+
+What is the most powerful capability and why? 
+The most powerful capability node-wise is the web scraping nodes for both competitor sites, because they provide the raw, structured data needed to make any analysis or AI output accurate. Without clean, reliable input data, the code/AI nodes can’t produce trustworthy results, no matter how advanced the downstream processing is.
