@@ -35,4 +35,26 @@ What single phrase or instruction inside your System Message most changed the to
 
 Project4_WayfairBrandVoice_<Kayla Colletti>. PDF
 
+How to Edit Like a Content Writer
+Use this quick checklist when refining your AI outputs:
+- Simplify every sentence.
+- Replace generic adjectives (“beautiful”, “amazing”) with specifics (“woven”, “hand-finished”, “textured”).
+- Add sensory cues: what something feels or looks like.
+- End with warmth or action: something that feels human (“Find yours. Feel the difference.”).
 
+Brand editing is creative control. It’s how your ideas become recognizably Wayfair.
+Clarity beats cleverness. Wayfair’s best content is honest, confident, and warm.
+Emotion is the differentiator. Always find the human in the data.
+
+Project Recap: 
+
+Input: Neutral-toned rugs trending in Scandinavian interiors
+
+Output: { "insights": [ "Highlight the soft, inviting texture and versatile pattern as a foundational piece that adds warmth and comfort, transforming any room into a cozy retreat.", "Emphasize the practical low-pile design, making it an ideal choice for high-traffic areas, pet-friendly homes, and effortless cleaning and maintenance.", "Showcase its common sizes (e.g., 5x7, 8x10) as a key element for anchoring furniture, defining living zones, and creating a cohesive, well-balanced aesthetic in any space.", "Reinforce the rug's durable construction and quality materials, assuring customers of a long-lasting investment that withstands daily wear while maintaining its beauty and style." ] }
+
+How did your system messages evolve from data-driven to creative? 
+  The system messages started with analytical instructions (pricing, trend signals, competitive data) that produced report-style insights. They then shifted to creative directives (warm tone, storytelling, product features) that produced marketing-style, customer-facing copy.
+
+Which part of n8n feels natural to you now, and which part still challenges you? 
+  Natural: Connecting the nodes and understanding how the workflow logic flows from one step to the next feels intuitive now.
+  Challenging: Debugging the workflow when something breaks still feels tricky, especially tracking where the error originates.
