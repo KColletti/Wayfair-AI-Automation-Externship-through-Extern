@@ -8,3 +8,32 @@ Supabase gives the agent memory (store, recall and build upon)
 Now that your agents are storing outputs in one shared database what does this unlock for Wayfair and how might having this intelligence in one place change the way real teams make decisions?
 -It changes team decision-making from disconnected, team-by-team inputs to faster, more aligned choices driven by shared, accumulated intelligence.
 
+1_TrendSignals — Market Momentum
+Tracks product and aesthetic shifts across categories.
+Key Columns: Trend, Category, Detected Date, Material, Pattern, Key Insight.
+Each row shows a pattern emerging in the market — colors, textures, or materials gaining traction.
+These are signals for Wayfair’s merchandising teams to identify growth areas.
+Example: Multiple mentions of “washable” and “distressed” across sources → strong demand trend worth inventory focus.
+
+2_CompetitorMoves — Competitive Landscape
+Captures what Amazon or other competitors are emphasizing.
+Key Columns: Competitor, Product / Collection, Price, Rating, Wayfair Gap, Suggested Action.
+Each row is effectively a competitive insight card — what rivals are doing and what Wayfair should do next.
+Example: If Amazon highlights “soft & durable” in product copy → Wayfair can mirror that in PDP descriptions.
+
+3_Allinsights — Creative Intelligence
+Connects market and competitor signals into actionable ideas.
+Key Columns: Insight, Summary Insight, Recommended Action, Content Idea, Type, Impact Level.
+This is where strategic intelligence becomes creative direction — what to feature in campaigns, blogs, and social.
+Think of it as Wayfair’s internal brief generator for marketing teams.
+
+4_ExecutiveSummary — The Big Picture
+Automatically aggregates data from the other three tabs.
+Shows summaries, counts, and trend distributions.
+Uses built-in formulas (=COUNTIF(), =AVERAGE(), =UNIQUE()) to calculate insights dynamically.
+You never write to this sheet — it’s designed to listen and display.
+This is your “decision dashboard” — one glance tells leadership what’s happening across the ecosystem.
+
+Data means nothing until it’s readable: A dashboard’s real value is in how clearly it communicates. Every formula, color, and layout choice exists to make someone’s decision easier.
+Automation without interpretation is noise: You’ve automated the pipeline, but intelligence emerges only when you slow down to understand patterns: what’s shifting, who’s winning, and why it matters.
+Good dashboards report and they persuade: Every highlight, every conditional format is a subtle argument: this is what deserves your attention. You’re shaping focus and then helping make decisions.
