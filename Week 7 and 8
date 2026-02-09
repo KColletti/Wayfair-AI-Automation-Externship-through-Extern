@@ -52,3 +52,10 @@ Executive Summary- Synthesizes all three into one decision-ready view
 Image of Sheets Integration 
 Image of Supabase 
 Link to Google sheets: https://docs.google.com/spreadsheets/d/17XiBs0qWQjSN4_CQkllG5jLlK8-qp_4s2j-6SjFB2L4/edit?usp=sharing 
+
+Reflection: 
+This project showed me that ideas only turn into real systems when the order and connections between steps are carefully thought out. Every part depended on the one before it, so small decisions early on had a big impact later, which made cause and effect really clear. More than the tools themselves, I learned how important it is to think about how everything works together as a whole so the system produces meaningful insight instead of random output.
+
+I was most curious about the automation and data side of the project, especially building workflows that could run on their own and turn raw information into something useful. I liked refining the logic and seeing how data flowed from one step to the next without manual input. That says I’m interested in solving problems focused on efficiency, scalability, and using data to drive smarter decisions.
+
+If I rebuilt this agent a year from now, I would start with a clearer system design and end goal before building individual pieces. I’d focus more on modular workflows, better data validation, and cleaner logic early on so changes and scaling would be easier later. With more experience, I’d also experiment with more advanced automation and feedback loops to make the system more adaptive and efficient overall.
