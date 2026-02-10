@@ -59,3 +59,9 @@ This project showed me that ideas only turn into real systems when the order and
 I was most curious about the automation and data side of the project, especially building workflows that could run on their own and turn raw information into something useful. I liked refining the logic and seeing how data flowed from one step to the next without manual input. That says I’m interested in solving problems focused on efficiency, scalability, and using data to drive smarter decisions.
 
 If I rebuilt this agent a year from now, I would start with a clearer system design and end goal before building individual pieces. I’d focus more on modular workflows, better data validation, and cleaner logic early on so changes and scaling would be easier later. With more experience, I’d also experiment with more advanced automation and feedback loops to make the system more adaptive and efficient overall.
+
+Project had a highlight reel what would it be on: The highlight moment is the end-to-end automation: collecting competitive signals, validating them across sources, and surfacing prioritized insights that support faster, more confident decisions.
+
+What skills were leveled up: I most leveled up my skills in integrating automated workflows across tools—specifically connecting AI-generated outputs to Supabase and syncing them into Google Sheets. This project strengthened my understanding of how data moves between systems, how to structure outputs for reliable ingestion, and how to maintain consistency across automated pipelines.
+
+Harest part: The hardest part was cleaning and structuring raw HTML data from subpages. I worked through it by staying patient, troubleshooting step by step, and asking for help when I got stuck.
